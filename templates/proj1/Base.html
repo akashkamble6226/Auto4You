@@ -1,0 +1,64 @@
+{% load staticfiles%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css">
+    
+    <!-- Main css -->
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css">
+    
+    <!-- Main css -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <title> {% block title %}Document{% endblock %}</title>
+</head>
+<body background="{% static 'sky9.jpg' %}">
+{% block menubar%}
+    <div id="menubar">
+      
+      <ul>
+        <li><a href="Login.html">Login</a></li>
+        <li><a href="firstpage.html">Home</a></li>
+        <li><a href="ContactUs.html">Contact Us</a></li>
+        <li><a href="AboutUs.html">About Us</a></li>
+      </ul>
+      
+    </div>
+  
+  
+  
+
+  <style>
+      ul {
+        list-style-type:none;
+        margin: 0;
+        padding: 0;
+        overflow:visible;
+        background-color: #333333;
+      }
+      
+      li {
+        float:right;
+      }
+      
+      li a {
+        display:initial;
+        color:black;
+        text-align: center;
+        padding:10px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color:akash;
+      }
+      </style>
+
+</body>
+</html>
+{% endblock menubar %}
