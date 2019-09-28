@@ -1,64 +1,111 @@
-{% load staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
-  <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css">
-    
-    <!-- Main css -->
-    <link rel="stylesheet" href="static/css/style.css">
-
-    <link rel="stylesheet" href="static/fonts/material-icon/css/material-design-iconic-font.min.css">
-    
-    <!-- Main css -->
-    <link rel="stylesheet" href="static/css/style.css">
-    <title> {% block title %}Document{% endblock %}</title>
+<title>{% block title %}Base{% endblock %}</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" type="text/css" href="/static/reg/index.css">
 </head>
-<body background="{% static 'sky9.jpg' %}">
-{% block menubar%}
-    <div id="menubar">
-      
-      <ul>
-        <li><a href="Login.html">Login</a></li>
-        <li><a href="firstpage.html">Home</a></li>
-        <li><a href="ContactUs.html">Contact Us</a></li>
-        <li><a href="AboutUs.html">About Us</a></li>
-      </ul>
-      
+{% block main %}
+<body background=" /static/sky8.jpg">
+
+
+    <style>
+				ul {
+				  list-style-type:none;
+				  margin: 0;
+				  padding: 0;
+				  overflow:visible;
+				  background-color: #333333;
+				}
+				
+				li {
+				  float:right;
+				}
+				
+				li a {
+				  display:block;
+				  color: white;
+				  text-align: center;
+				  padding:16px;
+				  text-decoration: none;
+				}
+				
+				li a:hover {
+				  background-color:akash;
+				}
+				</style>
+				<style>
+					div.background {
+					  background: url(/static/sky6.jpg) repeat;
+					 /* background-color: #3e8e41;*/
+					  border: 0px solid black;
+					}
+					
+					div.transbox {
+					  margin: 30px;
+					  background-color: #ffffff;
+					  border: 1px solid black;
+					  opacity: 0.8;/* for transparancy*/
+					  filter: alpha(opacity=60); /* For IE8 and earlier */
+					}
+					
+					div.transbox p {
+					  margin: 2%; /* for changing height of box*/
+					  font-weight: bold;
+					  color: #000000;
+					}
+					</style>
+    <div class="wrapper">
+       
+        <ul>
+          <ul>
+              <li><a href="/Home">Home</a></li>
+            <li><a href="/Login">Login</a></li>
+            <li><a href="/Register">Register</a></li>
+            <li><a href="/ContactUs">Contact Us</a></li>
+            <li><a href="/AboutUs">About Us</a></li>
+          </ul>
+        </ul>
+       
     </div>
-  
-  
-  
 
-  <style>
-      ul {
-        list-style-type:none;
-        margin: 0;
-        padding: 0;
-        overflow:visible;
-        background-color: #333333;
-      }
-      
-      li {
-        float:right;
-      }
-      
-      li a {
-        display:initial;
-        color:black;
-        text-align: center;
-        padding:10px;
-        text-decoration: none;
-      }
-      
-      li a:hover {
-        background-color:akash;
-      }
-      </style>
-
+    <!-- <div id="content">
+        {% block content %}{% endblock %}
+    </div> -->
 </body>
+<br><br><br><br>
+
 </html>
-{% endblock menubar %}
+
+
+
+
+
+
+
+
+<!-- <div class="wrap"> 
+		<h2>Register Here</h2>
+		<form action="Register" method="POST">
+			{% csrf_token %}
+		   <input type="text" placeholder="Your Name" name="first_name">
+		   <input type="text" placeholder="Your Email" name="email">
+		   <input type="text" placeholder="Your Username" name="username">
+		   <input type="Password" placeholder="Your Password" name="password">
+		   
+		   <input type="checkbox"><h6>Accepting the terms and conditions.</h6>
+		   <input type="submit" value="Sign up">
+		   <h6><b><i>Already Account?</i></b></h6>
+		   <a class="txt1" href="/static/Login.html">
+								login here.
+							</a>
+		</form>
+	</div> -->
+
+
+
+
+
+
+
+{% endblock main%}

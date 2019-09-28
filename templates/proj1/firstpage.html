@@ -4,11 +4,13 @@
 <html>
 <head>
 
-	<title>Image slider</title>
+	<title>Home</title>
+	
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
 	<style> 
             input[type=text] {
               width: 25%;
@@ -93,13 +95,7 @@
 
 	</style>
 </head>
-<body background="{%static 'taxi1.jpg' %}">
-		 
-
-
-
-
-		
+<body background="{%static 'taxi1.jpg' %}">	
 
 		<style>
 				ul {
@@ -151,14 +147,30 @@
 		
 				</head>
 				<body>
+						{% if user.is_authenticated %}
+						<h2><center><font color="white">Hello,{{user.first_name}}</font></center></h2>
+						{% endif %}
 						<center><h1>WELCOME</h1></center>
-				<ul>
-					
-					<li><a href="{% static 'Login.html' %}">Login</a></li>
-				  <li><a href="{% static 'Register.html' %}">Register</a></li>
-				  <li><a href="{% static 'ContactUs.html' %}">Contact Us</a></li>
-				  <li><a href="{% static 'AboutUs.html' %}">About Us</a></li>
-				</ul>
+						
+						<nav>
+								<ul>     
+										<li><a href="/firstpage">Home</a></li>
+										<li><a href="/Register">Register</a></li>
+										<li><a href="/ContactUs">Contact Us</a></li>
+										<li><a href="/AboutUs">About Us</a></li>		
+										{% if user.is_authenticated %}
+										
+										<li><a href="/Logout">Logout</a></li>
+										{% else %}
+										<li><a href="/Login">Login</a></li>
+										
+										{% endif %}
+					  
+									<!-- <li><b><a href="#">Dashboard</a></b></li> -->
+								</ul>
+								</nav>
+
+								
 				<br><br><br><br>
 
 	<div id="slider">
@@ -183,7 +195,7 @@
   	var slider_content = document.getElementById('box');
 
   	// contain images in an array
-    var image = ['a','b', 'c', 'd','e'];
+    var image = ['1','2', '3', '4','e'];
 
     var i = image.length;
 
@@ -197,7 +209,7 @@
     		i = 1;
 		}
 		
-		slider_content.innerHTML = "img src=BASE_DIR/"+image[i-1]+".jpg";
+		slider_content.innerHTML = '<img src="/static/'+image[i-1]+'.jpg"/>';
 		
     }
 
@@ -212,7 +224,7 @@
     		i = image.length;
 		}
 		
-    	  slider_content.innerHTML = "img src=BASE_DIR/"+image[i-1]+".jpg";
+		slider_content.innerHTML = '<img src="/static/'+image[i-1]+'.jpg"/>';
 
     }
 

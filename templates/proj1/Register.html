@@ -1,52 +1,67 @@
-{%load static%}
+
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ContactUs</title>
+    <title>Register</title>
+	<link rel="stylesheet" type="text/css" href="/static/reg/index.css">
 </head>
-<body background="{% static'sky6.jpg' %}" leftmargin="100px" rightmargin="100px">
+<body>
+    
+		<nav>
+			<ul>
+					<li><a href="/firstpage">Home</a></li>
+					<li><a href="/Register">Register</a></li>
+					<li><a href="/ContactUs">Contact Us</a></li>
+					<li><a href="/AboutUs">About Us</a></li>		
+					{% if user.is_authenticated %}
+					<li><font color="red"><u> Hello,{{user.first_name}}</u></font></li>
+					<li><a href="/Logout">Logout</a></li>
+					{% else %}
+					<li><a href="/Login">Login</a></li>
+					
+					{% endif %}
+  
+				<!-- <li><b><a href="#">Dashboard</a></b></li> -->
+			</ul>
+			</nav>
+	<div class="wrap">
+	<h2>Register Here</h2>
+	<form action="Register" method="POST">
+    {% csrf_token %}
+    <input type="text" placeholder="Your Name" name="first_name" required="" autofocus="">
+	<input type="text" placeholder="Your Email" name="email" required="abc@gmail.com">
+	
+	
+	<input type="text" placeholder="Your Username" name="username"required="">
 
-        <style>
-                ul {
-                  list-style-type:none;
-                  margin: 0;
-                  padding: 0;
-                  overflow:visible;
-                  background-color: #333333;
-                }
-                
-                li {
-                  float:right;
-                }
-                
-                li a {
-                  display:block;
-                  color: white;
-                  text-align: center;
-                  padding:16px;
-                  text-decoration: none;
-                }
-                
-                li a:hover {
-                  background-color:akash;
-                }
-                </style>
-                </head>
-                <body>
-                
-                <ul>
-                    <li><a href="{% static 'Login.html' %}">Login</a></li>
-                    <li><a href="{% static 'Register.html' %}">Register</a></li>
-                    <li><a href="{% static 'AboutUs.html' %}">About Us</a></li>
-                    <li><a href="{% static 'ContactUs.html' %}">Contact Us</a></li>
-                    <li><a href="{% static 'firstpage.html' %}">Home</a></li>
-                </ul>
-             
-    <h1>
-        This for Register Us
-    </h1>
+	<div>
+
+	   <input type="Password" placeholder="Your Password" name="password"required="">
+	   <input type="checkbox"><h6>Accepting the terms and conditions.</h6>
+	   <input type="submit" value="Sign up">
+	   <h6><b><i>Already Account?</i></b></h6>
+	   <a class="txt1" href="Login.html">
+							login here.
+						</a>
+						
+	</form>
+
+	<label>
+			<div>	
+					{% for mes1 in messages %}
+					<h3>
+							{{mes1}}
+					</h3>
+					{% endfor %}
+				   </div>
+	</label>
+	</div>
+	
+
+
 </body>
 </html>

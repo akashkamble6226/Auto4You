@@ -1,0 +1,64 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+<head>
+
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+
+
+</head>
+<body>
+<div id="main">
+		<nav>
+			<ul>
+					<li><a href="/firstpage">Home</a></li>
+					<li><a href="/Register">Register</a></li>
+					<li><a href="/ContactUs">Contact Us</a></li>
+					<li><a href="/AboutUs">About Us</a></li>		
+					{% if user.is_authenticated %}
+					<li><a href="/Logout">Logout</a></li>
+					{% else %}
+					<li><a href="/Login">Login</a></li>
+					
+					{% endif %}
+  
+			</ul>
+		</nav>
+</div>
+<div class="wrapper">
+	{% if user.is_authenticated %}
+	<font color="red"><h1>Hello,{{user.first_name}}</h1></font>
+	<h2>WELCOME</h2>
+	<h3>Chosse the source from which you wanna start your journy !</h3>
+	{% endif %}
+
+</div>
+<div class="wrapper">
+	<div class="parent" onclick="">
+		<div class="child bg-one">
+			<p href="#">Malegaon</p>
+		</div>
+	</div>
+
+	<div class="parent right" onclick="">
+		<div class="child bg-two">
+			<p href="#">Malegaon Collage</p>
+		</div>
+	</div>
+
+	<div class="parent" onclick="">
+		<div class="child bg-three">
+			<p href="#">Shardanagar</p>
+		</div>
+	</div>
+
+
+	<div class="parent right" onclick="">
+		<div class="child bg-four">
+			<p href="#">Baramati</p>
+		</div>
+	</div>
+
+	
+</div>					
+
+
+</body>

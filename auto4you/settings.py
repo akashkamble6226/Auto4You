@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+   
 ]
 
 MIDDLEWARE = [
@@ -128,8 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR,'auto4you/images_to_use')
+        os.path.join(BASE_DIR,'static')
 
 ]
-STATIC_ROOT=os.path.join(BASE_DIR,'assets2')
+# STATIC_ROOT=os.path.join(BASE_DIR,'assets2')
 
