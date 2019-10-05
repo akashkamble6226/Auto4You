@@ -112,8 +112,9 @@
 				  <li><a href="/ContactUs">Contact Us</a></li>
 				  <li><a href="/AboutUs">About Us</a></li>		
 				  {% if user.is_authenticated %}
-				  <li><font color="red"><u> Hello,{{user.first_name}}</u></font></li>
-				  <li><a href="/Logout">Logout</a></li>
+				 
+          <li><a href="/Logout">Logout</a></li>
+          <li><a href="/main">Main</a></li>
 				  {% else %}
 				  <li><a href="/Login">Login</a></li>
 				  

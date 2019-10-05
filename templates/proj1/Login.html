@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 
 <html>
+
+		<style>                       
+				div.sticky {
+				  position: -webkit-sticky;
+				  position: sticky;
+				  top: 0;
+				  
+				  
+				  
+				}
+		</style>
 <head>
 	<title>Login</title>
     <link rel="stylesheet" type="text/css" href="/static/login/Document2.css">
     
 </head>
 <body>
+<div class="sticky">	
 	<nav>
         <ul>
-				<li><a href="/firstpage">Home</a></li>
-				<li><a href="/Register">Register</a></li>
+				<li><a href="/firstpagenew">Home</a></li>
+				
 				<li><a href="/ContactUs">Contact Us</a></li>
 				<li><a href="/AboutUs">About Us</a></li>		
 				{% if user.is_authenticated %}
-				<li><font color="red"><u> Hello,{{user.first_name}}</u></font></li>
+				
 				<li><a href="/Logout">Logout</a></li>
+				<li><a href="/main">Main</a></li>
 				{% else %}
 				<li><a href="/Login">Login</a></li>
+				<li><a href="/Register">Register</a></li>
 				
 				{% endif %}
 
 				<!-- <li><b><a href="#">Dashboard</a></b></li> -->
 			</ul>
 	</nav>
-
+</div>
 	
 	 <br><br>
 	 
@@ -46,6 +60,10 @@
 	<a class="txt1" href="Register.html">
 							Register New Account
 	</a>
+	<br>
+	<a class="txt1" href="/templates/proj1/forgotpassword.html">
+			forgot password
+</a>
 	<div>	
 		{% for mes1 in messages %}
 		<h3>

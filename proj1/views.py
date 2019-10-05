@@ -2,13 +2,13 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
+
 from django.contrib import messages
-from .models import Data as data
+from .models import from_Malegaon_College,from_MalegaonBK,from_Shardanagar,from_Baramati 
 import urllib.request
 import urllib.parse
-from flask import Flask
-from flask import render_template
-app = Flask(__name__)
+
+
 
 
 
@@ -18,15 +18,15 @@ app = Flask(__name__)
 
 
 def home(request): 
-    return render(request,'firstpage.html') # for viewing it first time
+    return render(request,'firstpagenew.html') # for viewing it first time
 
 def Home(request): 
     return render(request,'firstpage.html') # for comming back to home from any page
 
 
 
-def firstpage(request): 
-    return render(request,'firstpage.html')
+def firstpagenew(request): 
+    return render(request,'firstpagenew.html')
 def main(request): 
     return render(request,'main.html')
 
@@ -65,11 +65,7 @@ def Register(request):
     
         
 
-def second(request):
-    source1 = request.POST['source']
-    dest1 = request.POST['dest']
-    #var = [source1 , dest1]
-    return render(request,'secondpage.html',{'source':source1, 'dest':dest1})
+
 
 
 
@@ -116,15 +112,23 @@ def after_login(request):
 
 def Logout(request):
     auth.logout(request)
-    return redirect("firstpage.html")
+    return redirect("firstpagenew.html")
+
+def final(request):
+    return render(request,'final.html')
 
 
 
-@app.route('/main')
-def main():
-    return render_template('main.html')
 
-@app.route('/sendSMS')
+def Sendsmsroute(request):
+    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Malegaon College')
+    print (resp)
+   
+    start_loc = from_Malegaon_College(start_loc='Malegaon College') #for storing entry into from_Malegaon_College
+    start_loc.save()
+    return HttpResponse(request,"final.html")
+    
+   
 
 
 def sendSMS(apikey, numbers, sender, message):
@@ -134,11 +138,80 @@ def sendSMS(apikey, numbers, sender, message):
     request = urllib.request.Request("https://api.textlocal.in/send/?")
     f = urllib.request.urlopen(request, data)
     fr = f.read()
+
     return(fr)
- 
-resp =  sendSMS('Zro10KL6WX4-YcI8DJDBXczWANsTKV1X37omKg8Mf2', '918605719895',
-    'TXTLCL', 'This is your message')
-print (resp)
+
+def Sendsmsroute1(request):
+    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Malegaon BK')
+    print (resp)
+   
+    start_loc = from_MalegaonBK(start_loc='Malegaon Bk') #for storing entry into from_Malegaon_Bk
+    start_loc.save()
+    
+
+    
+    return HttpResponse("Msg sent")
+
+def Sendsmsroute2(request):
+    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Shardanagar')
+    print (resp)
+   
+    start_loc = from_Shardanagar(start_loc='Shardanagar') #for storing entry into from_Shardanagar
+    start_loc.save()
+    
+
+    
+    return HttpResponse("Msg sent")
+
+def Sendsmsroute3(request):
+    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Baramati')
+    print (resp)
+   
+    start_loc = from_Baramati(start_loc='Baramati') #for storing entry into from_Shardanagar
+    start_loc.save()
+    
+
+    
+    return HttpResponse("Msg sent")
+
+
+
+    
+def forgotpassword(request):
+    if request.method=='POST':
+        un = request.POST['uname']
+        np = request.POST['npassword']
+        cp = request.POST['cpassword']
+        if User.objects.filter(username=un).exists():
+            if np == cp:
+                print("Yes")
+                User.objects.set_password(np)
+                save()
+               
+                messages.success(request,'Password has been reset successfully ')
+                return render(request,"forgotpassword.html")
+            else:
+                print("no")
+                messages.info(request,'Password mismatch')
+                return render(request,"forgotpassword.html")
+        else:
+            messages.info(request,'Username not found ')
+            return render(request,"forgotpassword.html")
+        
+    else:
+        
+        return render(request,'forgotpassword.html')
+    
+    
+
+
+    
+    
+
+
+
+
+
 
 
 

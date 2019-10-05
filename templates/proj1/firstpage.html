@@ -94,6 +94,25 @@
         }
 
 	</style>
+
+
+
+
+
+
+
+
+	<style>                       
+			div.sticky {
+			  position: -webkit-sticky;
+			  position: sticky;
+			  top: 0;
+			  
+			  
+			  
+			}
+			</style>
+	
 </head>
 <body background="{%static 'taxi1.jpg' %}">	
 
@@ -151,16 +170,17 @@
 						<h2><center><font color="white">Hello,{{user.first_name}}</font></center></h2>
 						{% endif %}
 						<center><h1>WELCOME</h1></center>
-						
+<div class="sticky">
 						<nav>
 								<ul>     
-										<li><a href="/firstpage">Home</a></li>
+										<li><a href="/firstpagenew">Home</a></li>
 										<li><a href="/Register">Register</a></li>
 										<li><a href="/ContactUs">Contact Us</a></li>
 										<li><a href="/AboutUs">About Us</a></li>		
 										{% if user.is_authenticated %}
 										
 										<li><a href="/Logout">Logout</a></li>
+										<li><a href="/main">Main</a></li>	
 										{% else %}
 										<li><a href="/Login">Login</a></li>
 										
@@ -170,7 +190,7 @@
 								</ul>
 								</nav>
 
-								
+</div>								
 				<br><br><br><br>
 
 	<div id="slider">
@@ -237,10 +257,10 @@
 
   <div class="background">
         <div class="transbox">
-          <p><i>A Genuine try for solving a real time problem which is been faced by many of us. A problem which never let us to go anywhere ontime.We think we can solve it & we are being solving it... 
-         
-          <p style="text-align: right"><i>-Problem Solvers</i></p>
-          </i></p>
+          <p>A Genuine try for solving a real time problem which is been faced by many of us. A problem which never let us to go anywhere ontime.We think we can solve it & we are being solving it... 
+		  </p>
+          <p style="text-align: right">-Auto4You Team</p>
+          
         </div>
       </div>
 

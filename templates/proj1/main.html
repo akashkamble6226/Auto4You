@@ -1,4 +1,67 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+<script type=text/javascript>
+        $(function() {
+          $('a#test').bind('click', function() {
+            $.getJSON('/sendSMS',
+                function(data) {
+              console.log();
+            });
+            return false;
+          });
+        });
+</script>
+
+<script type=text/javascript>
+	$(function() {
+	  $('a#test1').bind('click', function() {
+		$.getJSON('/Sendsmsroute1',
+			function(data) {
+		  console.log();
+		});
+		return false;
+	  });
+	});
+</script>
+
+<script type=text/javascript>
+	$(function() {
+	  $('a#test2').bind('click', function() {
+		$.getJSON('/Sendsmsroute2',
+			function(data) {
+		  console.log();
+		});
+		return false;
+	  });
+	});
+</script>
+
+<script type=text/javascript>
+	$(function() {
+	  $('a#test3').bind('click', function() {
+		$.getJSON('/Sendsmsroute3',
+			function(data) {
+		  console.log();
+		});
+		return false;
+	  });
+	});
+
+
+	
+</script>
+
+
+<style>                       
+		div.sticky {
+		  position: -webkit-sticky;
+		  position: sticky;
+		  top: 0;
+		  
+		  
+		  
+		}
+</style>
+
 <head>
 
 <link rel="stylesheet" type="text/css" href="/static/main.css">
@@ -6,22 +69,25 @@
 
 </head>
 <body>
-<div id="main">
+
+<div class="sticky">
 		<nav>
 			<ul>
-					<li><a href="/firstpage">Home</a></li>
-					<li><a href="/Register">Register</a></li>
+					<li><a href="/firstpagenew">Home</a></li>
+					
 					<li><a href="/ContactUs">Contact Us</a></li>
 					<li><a href="/AboutUs">About Us</a></li>		
 					{% if user.is_authenticated %}
 					<li><a href="/Logout">Logout</a></li>
+					<li><a href="/main">Main</a></li>
 					{% else %}
 					<li><a href="/Login">Login</a></li>
-					
+					<li><a href="/Register">Register</a></li>
 					{% endif %}
   
 			</ul>
 		</nav>
+
 </div>
 <div class="wrapper">
 	{% if user.is_authenticated %}
@@ -31,34 +97,52 @@
 	{% endif %}
 
 </div>
-<div class="wrapper">
-	<div class="parent" onclick="">
+
+       <div class="wrapper">
+		<div class="parent" onclick="">
 		<div class="child bg-one">
-			<p href="#">Malegaon</p>
+			
+			
+			<p><a href=# id=test><button class='btn btn-default' onclick="window.location.href='templates/proj1/final.html'">Malegaon College</button></a></p>	
+
+			
+			
 		</div>
 	</div>
 
 	<div class="parent right" onclick="">
 		<div class="child bg-two">
-			<p href="#">Malegaon Collage</p>
+			
+				<p><a href=# id=test1><button class='btn btn-default' onclick="window.location.href='templates/proj1/final.html'">Malegaon Bk</button></a></p>
+			 
 		</div>
 	</div>
+
 
 	<div class="parent" onclick="">
 		<div class="child bg-three">
-			<p href="#">Shardanagar</p>
+				<p><a href=# id=test2><button class='btn btn-default'onclick="window.location.href='templates/proj1/final.html'">Shardanagar</button></a></p>
+				
+			
 		</div>
 	</div>
 
-
 	<div class="parent right" onclick="">
 		<div class="child bg-four">
-			<p href="#">Baramati</p>
+			
+				<p><a href=# id=test3><button class='btn btn-default'onclick="window.location.href='templates/proj1/final.html'">Baramati</button></a></p>
+			 
 		</div>
 	</div>
 
 	
-</div>					
+
+	
+</div>
+</form>
+
+
+
 
 
 </body>
