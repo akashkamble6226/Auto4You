@@ -4,13 +4,19 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 
 from django.contrib import messages
-from .models import from_Malegaon_College,from_MalegaonBK,from_Shardanagar,from_Baramati 
+from .models import from_Malegaon_College,from_MalegaonBK,from_Shardanagar,from_Baramati,feedback
 import urllib.request
 import urllib.parse
 
+import matplotlib.pyplot as plt  # from here  is for plotting graphs
+import numpy as np
+import pandas as pd
+from pandas import DataFrame
+import  matplotlib.pyplot as plt;plt.rcdefaults()
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigurCanvas
+from matplotlib.figure import Figure
 
-
-
+from sklearn.cluster import KMeans
 
 #from .models import Data
 
@@ -121,7 +127,7 @@ def final(request):
 
 
 def Sendsmsroute(request):
-    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Malegaon College')
+    resp =  sendSMS('dgDpU4wgcrk-Q20nRXlEsHy5CWKMikDzNjeiKPLcWv', '919658960202','TXTLCL', 'Location:Malegaon College')
     print (resp)
    
     start_loc = from_Malegaon_College(start_loc='Malegaon College') #for storing entry into from_Malegaon_College
@@ -142,7 +148,7 @@ def sendSMS(apikey, numbers, sender, message):
     return(fr)
 
 def Sendsmsroute1(request):
-    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Malegaon BK')
+    resp =  sendSMS('dgDpU4wgcrk-Q20nRXlEsHy5CWKMikDzNjeiKPLcWv', '919658960202','TXTLCL', 'Location:Malegaon BK')
     print (resp)
    
     start_loc = from_MalegaonBK(start_loc='Malegaon Bk') #for storing entry into from_Malegaon_Bk
@@ -153,7 +159,7 @@ def Sendsmsroute1(request):
     return HttpResponse("Msg sent")
 
 def Sendsmsroute2(request):
-    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Shardanagar')
+    resp =  sendSMS('dgDpU4wgcrk-Q20nRXlEsHy5CWKMikDzNjeiKPLcWv', '919658960202','TXTLCL', 'Location:Shardanagar')
     print (resp)
    
     start_loc = from_Shardanagar(start_loc='Shardanagar') #for storing entry into from_Shardanagar
@@ -164,7 +170,7 @@ def Sendsmsroute2(request):
     return HttpResponse("Msg sent")
 
 def Sendsmsroute3(request):
-    resp =  sendSMS('dgDpU4wgcrk-UfUgKP7CLLl28GHbIP3Vl5vlrBeah6', '8669325226','TXTLCL', 'Location:Baramati')
+    resp =  sendSMS('dgDpU4wgcrk-Q20nRXlEsHy5CWKMikDzNjeiKPLcWv', '919658960202','TXTLCL', 'Location:Baramati')
     print (resp)
    
     start_loc = from_Baramati(start_loc='Baramati') #for storing entry into from_Shardanagar
@@ -182,34 +188,74 @@ def forgotpassword(request):
         un = request.POST['uname']
         np = request.POST['npassword']
         cp = request.POST['cpassword']
-        if User.objects.filter(username=un).exists():
-            if np == cp:
-                print("Yes")
-                User.objects.set_password(np)
-                save()
-               
+        if np == cp:
+            if User.objects.filter(username=un).exists():
+                s_user = User.objects.get(username=un)
+                s_user.set_password(np)
+                s_user.save()
                 messages.success(request,'Password has been reset successfully ')
                 return render(request,"forgotpassword.html")
+                
             else:
-                print("no")
-                messages.info(request,'Password mismatch')
+                messages.info(request,'Username not found ')
                 return render(request,"forgotpassword.html")
         else:
-            messages.info(request,'Username not found ')
-            return render(request,"forgotpassword.html")
-        
+            messages.info(request,'Password mismatch')
+            return render(request,"forgotpassword.html")  
     else:
         
         return render(request,'forgotpassword.html')
     
     
+def feed(request):
+    if request.method=='POST':
+        un = request.POST['username']
+        if User.objects.filter(username=un).exists():
+            username = request.POST['username']
+            email_id = request.POST['mail']
+            message = request.POST['msg']
+        
+            all_data = feedback(username=username,email_id=email_id,message=message)
+            all_data.save()
+            messages.info(request,'Thanks for your valuable feedback ')
+            return render(request,'feedback.html')
+        else:
+            messages.info(request,'This username doesent exist in our database')
+            return render(request,'feedback.html')
+    else:
+        return render(request,'feedback.html')
+
+
+def Dashboard(request):
+    return render(request,'Dashboard.html')
+
+def graph(request):
+    df = pd.read_csv('C:/Users/AKASH/Django/myprojects/auto4you/proj1/final2.csv')
+    print(df)
+    x=df['Date']
+    y=df['Cost']
+    plt.bar(x,y,color='blue',align='center')
+    plt.title('seats/Day')
+    plt.ylabel('Seats')
+    plt.xlabel('Date')
+    plt.show() 
+    return HttpResponse(request,"Dashboard.html")
+
+def Kmeans(request):
+    data=pd.read_csv('C:/Users/AKASH/Django/myprojects/auto4you/proj1/final2.csv')
+    df=DataFrame(data,columns=['Cost','Number'])
+    kmeans=KMeans(n_clusters=2).fit(df)
+    centroids=kmeans.cluster_centers_
+    plt.scatter(df['Cost'],df['Number'],c=kmeans.labels_.astype(float),s=100,alpha=0.5)
+    plt.scatter(centroids[:,0],centroids[:,1],c='red',s=100)
+    plt.legend()
+    plt.show()
+    return HttpResponse(request,"Dashboard.html")
+
+    
 
 
     
-    
-
-
-
 
 
 

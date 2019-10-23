@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+	<link rel="stylesheet" href="/static/contact.css">
+</head>
+<body>
+        <nav>
+                <ul>
+                        <li><a href="/firstpagenew">Home</a></li>
+                        <li><a href="/Dashboard">Dashboard</a></li>
+                        <li><a href="/ContactUs">Contact Us</a></li>
+                <li><a href="/AboutUs">About Us</a></li>	
+                <li><a href="/feedback">Feedback</a></li>	
+                        {% if user.is_authenticated %}
+                        
+                        <li><a href="/Logout">Logout</a></li>
+                        <li><a href="/main">Main</a></li>
+                        {% else %}
+                        <li><a href="/Login">Login</a></li>
+                        <li><a href="/Register">Register</a></li>
+                        
+                        {% endif %}
+        
+                        <!-- <li><b><a href="#">Dashboard</a></b></li> -->
+                    </ul>
+            </nav>
+	<div class="container">
+		<div class="contact-method">
+		<img src="/static/mail.png" alt="">
+		<span><a href="#">helpauto4you@gmail.com</a>
+                </span>
+	</div>
+		<div class="contact-method">
+		<img src="/static/contact.png" alt="">
+		<span><a href="#">8605719895</span></a>
+	</div>
+		<div class="contact-method" >
+		<img src="/static/address.png" alt="">
+		<span><a href="https://www.google.com/maps/place/SVPM's+College+Of+Engineering+Malegaon+Bk+Electrical+Engg+Department/@18.1406617,74.4966127,18z/data=!4m12!1m6!3m5!1s0x3bc3a7349e273eab:0xf6b805046b98c1d9!2sSVPM's+College+Of+Engineering+Malegaon+Bk+Electrical+Engg+Department!8m2!3d18.1402819!4d74.4977392!3m4!1s0x3bc3a7349e273eab:0xf6b805046b98c1d9!8m2!3d18.1402819!4d74.4977392">Head Office</a></span>
+	</div>
+
+
+</body>
+</html>

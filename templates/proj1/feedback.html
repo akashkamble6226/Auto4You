@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Feedback</title>
+  <link rel="stylesheet" type="text/css" href="/static/login/Document2.css">
+	
+</head>
+<body>
+
+
+    <nav>
+        <ul>
+				<li><a href="/firstpagenew">Home</a></li>
+				<li><a href="/Dashboard">Dashboard</a></li>
+				<li><a href="/ContactUs">Contact Us</a></li>
+        <li><a href="/AboutUs">About Us</a></li>	
+        <li><a href="/feedback">Feedback</a></li>	
+				{% if user.is_authenticated %}
+				
+				<li><a href="/Logout">Logout</a></li>
+				<li><a href="/main">Main</a></li>
+				{% else %}
+				<li><a href="/Login">Login</a></li>
+				<li><a href="/Register">Register</a></li>
+				
+				{% endif %}
+
+				<!-- <li><b><a href="#">Dashboard</a></b></li> -->
+			</ul>
+	</nav>
+	  
+    <div class="box">
+        
+        <h2>Give Feedback</h2>
+        <form  method="POST" action="feedback.html">
+          {% csrf_token %}
+        <div class="inputbox">
+        <input type="text" name="username" required="">
+        <label>Username</label>
+        </div>
+        <div class="inputbox">
+        <input type="text" name="mail" required="">
+        <label>Email</label>
+        </div>	
+
+        <div class="inputbox">
+            <input type="text" name="msg" required="">
+            <label>Message.....</label>
+            </div>	
+        <input type="submit" href="/proj1/templates/proj1/feedback.html" ><br>
+
+        <div>	
+            {% for mes1 in messages %}
+            <h3>
+              <p style="text-align: center"><font color="white">{{mes1}}</font></p>
+            </h3>
+            {% endfor %}
+          </div>
+        </form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#test').bind('click', function() {
+				$.getJSON('/graph',
+					
+					function(data) {
+						console.log(data);
+				  
+				});
+				return false;
+			  });
+			});
+	</script>
+	
+	<script type=text/javascript>
+		$(function() {
+		  $('a#test1').bind('click', function() {
+			$.getJSON('/Kmeans',
+				
+				function(data) {
+					console.log(data);
+			  
+			});
+			return false;
+		  });
+		});
+</script>
+
+
+
+
+	<head>
+		<title>Dashboard</title>
+		<link rel="stylesheet" type="text/css" href="/static/dashboard.css">
+	</head>
+<body>
+		<div id="main">
+                <nav>
+                        <ul>
+                                <li><a href="/firstpagenew">Home</a></li>
+                                <li><a href="/Dashboard">Dashboard</a></li>
+                                <li><a href="/ContactUs">Contact Us</a></li>
+                        <li><a href="/AboutUs">About Us</a></li>	
+                        <li><a href="/feedback">Feedback</a></li>	
+                                {% if user.is_authenticated %}
+                                
+                                <li><a href="/Logout">Logout</a></li>
+                                <li><a href="/main">Main</a></li>
+                                {% else %}
+                                <li><a href="/Login">Login</a></li>
+                                <li><a href="/Register">Register</a></li>
+                                
+                                {% endif %}
+                
+                                <!-- <li><b><a href="#">Dashboard</a></b></li> -->
+                            </ul>
+                    </nav>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="but">
+		 <a href=# id=test><button class="button">No. of users increases in week</button></a>
+		</div>
+		<div class="but2"> 
+		 <a href=# id=test1><button class="button">K-Means</button></a>
+		</div>
+		</form>
+</body>
+
+</html>

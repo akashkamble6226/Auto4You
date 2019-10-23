@@ -26,8 +26,10 @@
 			<ul>
 					<li><a href="/firstpagenew">Home</a></li>
 					<li><a href="/Register">Register</a></li>
+					<li><a href="/Dashboard">Dashboard</a></li>
 					<li><a href="/ContactUs">Contact Us</a></li>
-					<li><a href="/AboutUs">About Us</a></li>		
+					<li><a href="/AboutUs">About Us</a></li>
+					<li><a href="/feedback">Feedback</a></li>			
 					{% if user.is_authenticated %}
 					
 					<li><a href="/Logout">Logout</a></li>
@@ -60,7 +62,7 @@
 	<form action="Register" method="POST">
     {% csrf_token %}
     <input type="text" placeholder="Your Name" name="first_name" required="" autofocus="">
-	<input type="text" placeholder="Your Email" name="email" required="abc@gmail.com">
+	<input type="text" placeholder="Your Email" name="email" required="">
 	
 	
 	<input type="text" placeholder="Your Username" name="username"required="">
@@ -71,8 +73,8 @@
 	   <input type="checkbox"><h6>Accepting the terms and conditions.</h6>
 	   <input type="submit" value="Sign up">
 	   <h6><b><i>Already Account?</i></b></h6>
-	   <a class="txt1" href="Login.html">
-							login here.
+	   <a href="Login.html">
+			<font color="#F1C40F" >login here.</font>
 						</a>
 						
 	</form>

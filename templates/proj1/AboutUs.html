@@ -1,54 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-        <script>
-                function Function() {
-                    var oldpasswprd = document.getElementById('oldPassword').value;
-                    var newpassword = document.getElementById('newPassword').value;
-                    var confirmpassword = document.getElementById('confirmPassword').value;
-                    if (oldPassword == "" || newpassword == "" || confirmpassword == "") {
-                        alert('Please fill all the details');
-                    }
-                    else if (oldpasswprd == newpassword) {
-                        alert("Old password and New Password cannot be same");
-                    }
-                    else if (newpassword != confirmpassword) {
-                        alert("password mismatch");
-                    }
-                }
-            
-        </script>    
-
-
-
-
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About Us</title>
-
-
-    
-
-    
+	<title>About us</title>
+	<link rel="stylesheet" type="text/css" href="/static/aboutus.css">
 </head>
 <body>
+        <nav>
+                <ul>
+                                <li><a href="/firstpagenew">Home</a></li>
 
-        <form role="form" method="post">
-            old password:<br>
-            <input type="text" name="" value="" id="oldPassword">
-            <br>
-            new password:<br>
-            <input type="text" name="" value="" id="newPassword">
-            <br><br>
-            <button type="button" name="Submit" value="Save" class="btn btn-danger" onclick="Function();"><i class="livicon" data-n="pen" data-s="16" data-c="#fff" data-hc="0" "></i> Save</button>
-          </form> 
+                                <li><a href="/Dashboard">Dashboard</a></li>
 
-          
+                                <li><a href="/ContactUs">Contact Us</a></li>
+                                <li><a href="/AboutUs">About Us</a></li>
+                                <li><a href="/feedback">Feedback</a></li>			
+                                {% if user.is_authenticated %}
+                                
+                                <li><a href="/Logout">Logout</a></li>
+                                <li><a href="/main">Main</a></li>
+                                {% else %}
+                                <li><a href="/Login">Login</a></li>
+                                <li><a href="/Register">Register</a></li>
+                                
+                                {% endif %}
+
+                        <!-- <li><b><a href="#">Dashboard</a></b></li> -->
+                </ul>
+                </nav>
+	<div class="team-section">
+	<h1>Our Team</h1>
+	<span class="border"></span>
+	<div class="ps">
+	<a href="#p1"><img src="/static/AK.jpeg" alt=""></a>
+	<a href="#p2"><img src="/static/taxi.jpg" alt=""></a>
+	<a href="#p3"><img src="/static/taxi.jpg" alt=""></a>
+	<a href="#p4"><img src="/static/taxi.jpg" alt=""></a>
+	</div>
 
 
 
-    
+        <div class="section" id="p1">
+                <span class="name">Akash Kamble</span>
+                <span class="border"></span>
+                <span class="name">T shape devoloper</span>
+                
+                
+        </div>
+
+
+
+        <div class="section" id="p2">
+                <span class="name">Parvej Inamdar</span>
+                <span class="border"></span>
+                <span class="name">Front-end devoloper</span>
+                
+                
+        </div>
+
+        <div class="section" id="p3">
+                <span class="name">Amarjeet Ghongade</span>
+                <span class="border"></span>
+                <span class="name">Front-end devoloper</span>
+                
+                
+        </div>
+
+
+        <div class="section" id="p4">
+                <span class="name">Versha Shirke</span>
+                <span class="border"></span>
+                <span class="name">Tester</span>
+                
+                
+        </div>
 </body>
 </html>

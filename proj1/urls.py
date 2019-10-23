@@ -27,7 +27,13 @@ url('forgotpassword',views.forgotpassword, name='forgotpassword'),
 
 url('final',views.final,name='final'),
 
+url('feedback',views.feed,name='feed'),
 
+url('Dashboard',views.Dashboard, name='Dashboard'),
+
+url('graph',views.graph, name='graph'),
+
+url('Kmeans',views.Kmeans, name='Kmeans'),
 
 ]
 

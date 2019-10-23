@@ -81,9 +81,12 @@
 		<nav>
 				<ul>
 						<li><a href="/firstpagenew">Home</a></li>
-						<li><a href="/Register">Register</a></li>
+            <li><a href="/Register">Register</a></li>
+            <li><a href="/Dashboard">Dashboard</a></li>
+            
 						<li><a href="/ContactUs">Contact Us</a></li>
-						<li><a href="/AboutUs">About Us</a></li>		
+            <li><a href="/AboutUs">About Us</a></li>	
+            <li><a href="/feedback">Feedback</a></li>		
 						{% if user.is_authenticated %}
 						
 						<li><a href="/Logout">Logout</a></li>
@@ -105,7 +108,7 @@
 	    <br><br>
 		
 		<h2 ><font color="Marun">Nearby auto driver will reach you soon. Thank You for using Auto4You , we really apriciate you !</font></h2>
-		
+		<p>Give Feedback <a href="/feedback">Click</a></p>
 </div>
 
 <script>
