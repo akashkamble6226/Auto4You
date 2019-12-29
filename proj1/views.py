@@ -173,7 +173,7 @@ def Sendsmsroute3(request):
     resp =  sendSMS('dgDpU4wgcrk-Q20nRXlEsHy5CWKMikDzNjeiKPLcWv', '919658960202','TXTLCL', 'Location:Baramati')
     print (resp)
    
-    start_loc = from_Baramati(start_loc='Baramati') #for storing entry into from_Shardanagar
+    start_loc = from_Baramati(start_loc='Baramati') #for storing entry into from_baramati
     start_loc.save()
     
 
@@ -248,7 +248,6 @@ def Kmeans(request):
     centroids=kmeans.cluster_centers_
     plt.scatter(df['Cost'],df['Number'],c=kmeans.labels_.astype(float),s=100,alpha=0.5)
     plt.scatter(centroids[:,0],centroids[:,1],c='red',s=100)
-    plt.legend()
     plt.show()
     return HttpResponse(request,"Dashboard.html")
 
